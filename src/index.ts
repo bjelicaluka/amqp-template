@@ -1,16 +1,12 @@
 import { Message } from 'amqplib';
-import { Publisher } from './amqp/Publisher';
-import { Subscriber } from './amqp/Subscriber';
+import { Amqp } from './amqp/Amqp';
 
 
-const pub = new Publisher();
-const sub = new Subscriber();
+const amqp = new Amqp();
+amqp.initAll();
 
-pub.createConnection();
-pub.createChannel();
-
-sub.createConnection();
-sub.createChannel();
+const pub = amqp.getPublisher();
+const sub = amqp.getSubscriber();
 
 process.openStdin().addListener("data", function (d) {
   const input = d.toString().trim();
@@ -28,19 +24,14 @@ process.openStdin().addListener("data", function (d) {
     sub.assertQueue(tokens[1]);
   } else if (tokens[0] === "close") {
     if (tokens[1] === 'connection') {
-      sub.closeConnection();
-      pub.closeConnection();
+      amqp.closeConnection();
     } else if (tokens[1] === 'channel') {
       sub.closeChannel();
       pub.closeChannel();
     }
   } else if (tokens[0] === "create") {
     if (tokens[1] === 'connection') {
-      sub.createConnection();
-      pub.createConnection();
-    } else if (tokens[1] === 'channel') {
-      sub.createChannel();
-      pub.createChannel();
+      amqp.createConnection();
     }
   }
 });

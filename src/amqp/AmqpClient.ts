@@ -1,26 +1,19 @@
-import {AmqpAdapter} from './AmqpAdapter';
+import { Channel } from "amqplib/callback_api";
+import { AmqpOperationHandler } from "./AmqpOperationHandler";
 
 export class AmqpClient {
-    protected amqp: AmqpAdapter;
 
-    constructor() {
-        this.amqp = new AmqpAdapter();
-    }
+  constructor(protected amqpOpHandler: AmqpOperationHandler) { }
 
-    public createConnection() {
-        this.amqp.createConnection();
-    }
-    
-    public closeConnection() {
-        this.amqp.closeConnection();
-    }
+  public setClosedState() {
+    this.amqpOpHandler.setClosedState();
+  }
 
-    public createChannel() {
-        this.amqp.createChannel();
-    }
+  public setOpenedChannel(channel: Channel) {
+    this.amqpOpHandler.setOpenedChannel(channel);
+  }
 
-    public closeChannel() {
-        this.amqp.closeChannel();
-    }
-
+  public closeChannel() {
+    this.amqpOpHandler.closeChannel();
+  }
 }
