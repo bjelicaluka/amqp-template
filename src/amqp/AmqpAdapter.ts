@@ -71,6 +71,24 @@ export class AmqpAdapter {
     this.handleOperationsQueue();
   }
 
+  public closeChannel() {
+    if(this.channel) {
+      this.channel.close((error: any) => {
+        if(error) throw error;
+      });
+      this.channel = null;
+    }
+  }
+
+  public closeConnection() {
+    if(this.connection) {
+      if(this.channel) {
+        this.closeChannel();
+      }
+      this.connection.close();
+    }
+  }
+
   private handleChannelCreationQueue() {
     while (this.connection && this.channelCreationQueue.length !== 0) {
       const channelCreation = this.channelCreationQueue.shift();

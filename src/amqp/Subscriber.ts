@@ -1,19 +1,7 @@
 import {AmqpAdapter} from './AmqpAdapter';
+import { AmqpClient } from './AmqpClient';
 
-export class Subscriber {
-    private amqp: AmqpAdapter;
-
-    constructor() {
-        this.amqp = new AmqpAdapter();
-    }
-
-    public createConnection() {
-        this.amqp.createConnection();
-    }
-
-    public createChannel() {
-        this.amqp.createChannel();
-    }
+export class Subscriber extends AmqpClient {
 
     public assertQueue(queue: string, durable: boolean = false) {
         this.amqp.assertQueue(queue, durable);

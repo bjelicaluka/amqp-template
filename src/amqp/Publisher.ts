@@ -1,19 +1,7 @@
 import {AmqpAdapter} from './AmqpAdapter';
+import { AmqpClient } from './AmqpClient';
 
-export class Publisher {
-    private amqp: AmqpAdapter;
-
-    constructor() {
-        this.amqp = new AmqpAdapter();
-    }
-
-    public createConnection() {
-        this.amqp.createConnection();
-    }
-
-    public createChannel() {
-        this.amqp.createChannel();
-    }
+export class Publisher extends AmqpClient {
 
     public assertExchange(exchange: string, type: string, durable: boolean = false) {
         this.amqp.assertExchange(exchange, type, durable);
