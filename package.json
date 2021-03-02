@@ -1,5 +1,5 @@
 {
-  "name": "aid_config_gateway",
+  "name": "amqp_template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
