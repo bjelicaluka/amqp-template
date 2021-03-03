@@ -1,12 +1,12 @@
 import { Message } from 'amqplib';
-import { Amqp } from './amqp/Amqp';
+import { PubSubProvider } from './pub-sub/PubSubProvider';
 
 
-const amqp = new Amqp();
-amqp.initAll();
+const pubSubProvider = new PubSubProvider();
+pubSubProvider.init();
 
-const pub = amqp.getPublisher();
-const sub = amqp.getSubscriber();
+const pub = pubSubProvider.getPublisher();
+const sub = pubSubProvider.getSubscriber();
 
 process.openStdin().addListener("data", function (d) {
   const input = d.toString().trim();
@@ -22,16 +22,5 @@ process.openStdin().addListener("data", function (d) {
     sub.consume(tokens[1], (msg: Message) => console.log(msg.content.toString()), !!tokens[2]);
   } else if (tokens[0] === "queue") {
     sub.assertQueue(tokens[1]);
-  } else if (tokens[0] === "close") {
-    if (tokens[1] === 'connection') {
-      amqp.closeConnection();
-    } else if (tokens[1] === 'channel') {
-      sub.closeChannel();
-      pub.closeChannel();
-    }
-  } else if (tokens[0] === "create") {
-    if (tokens[1] === 'connection') {
-      amqp.createConnection();
-    }
   }
 });

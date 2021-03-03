@@ -1,4 +1,4 @@
-import { AmqpClient } from './AmqpClient';
+import { AmqpClient } from '../amqp/AmqpClient';
 
 export class Subscriber extends AmqpClient {    
 

@@ -1,0 +1,5 @@
+[2021-03-03T12:13:04.300Z : ERROR] - [ Message: Error when trying to connect to AMQP server. Error info: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"undefined"} ]
+[2021-03-03T12:13:05.301Z :  INFO] - [ Message: Attempting to connect to AMQP server after failure. ]
+[2021-03-03T12:13:07.561Z : ERROR] - [ Message: Error when trying to connect to AMQP server. Error info: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"undefined"} ]
+[2021-03-03T12:13:08.563Z :  INFO] - [ Message: Attempting to connect to AMQP server after failure. ]
+[2021-03-03T12:13:10.860Z : ERROR] - [ Message: Error when trying to connect to AMQP server. Error info: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"undefined"} ]
